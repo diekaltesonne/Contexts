@@ -31,9 +31,10 @@ def stuart_algo(word,dictionary):
             else:
                 stut[letter] = 1
                 sub_algo(word,stut,letter)
-    return len(stut)
-
+    return sum(list(stut.values()))
+    
 def kevin_algo(word,dictionary):
+    # Vowels are only defined as AEIOU . In this problem, Y is not considered a vowel.
     kevin = {}
     for letter in word:
         if letter in dictionary:
@@ -42,10 +43,7 @@ def kevin_algo(word,dictionary):
             else:
                 kevin[letter] = 1
                 sub_algo(word,kevin,letter)
-    return len(kevin)
-    # Vowels are only defined as AEIOU . In this problem, Y is not considered a vowel.
-
-    return ""
+    return sum(list(kevin.values()))
 
 if __name__ == '__main__':
     s = input()
