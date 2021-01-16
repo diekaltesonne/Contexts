@@ -1,8 +1,11 @@
 # https://www.hackerrank.com/challenges/the-minion-game/problem
 
 def minion_game(word):
-    a = stuart_algo(word)
-    b = kevin_algo(word)
+    dictionary = {"A","E","I","O","U"}
+    stut = {}
+    kev = {}
+    a = stuart_algo(word,dictionary)
+    b = kevin_algo(word,dictionary)
 
     if(a>b):
         return "Stuart {}".format(a)
@@ -10,10 +13,36 @@ def minion_game(word):
         return "Kevin {}".format(b)
     return "Something goes wrong"
 
-def stuart_algo(word):
-    
-    return ""
-def kevin_algo(word):
+def sub_algo(word,stut,substr):
+    stut[substr]=word.count(substr)
+    new_substr = substr+word[word.find(substr)+len(substr)]
+    if  word.find(substr)+len(substr)<(len(word)-1):
+        new_substr = substr+word[word.find(substr)+len(substr)]
+        return sub_algo(word,stut,new_substr)
+    else:
+        return stut
+
+def stuart_algo(word,dictionary):
+    stut = {}
+    for letter in word:
+        if letter not in dictionary:
+            if letter in stut:
+                stut[letter] = stut[letter]  + 1
+            else:
+                stut[letter] = 1
+                sub_algo(word,stut,letter)
+    return len(stut)
+
+def kevin_algo(word,dictionary):
+    kevin = {}
+    for letter in word:
+        if letter in dictionary:
+            if letter in kevin:
+                kevin[letter] = kevin[letter]  + 1
+            else:
+                kevin[letter] = 1
+                sub_algo(word,kevin,letter)
+    return len(kevin)
     # Vowels are only defined as AEIOU . In this problem, Y is not considered a vowel.
 
     return ""
