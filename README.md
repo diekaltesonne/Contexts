@@ -1,1 +1,1 @@
-# HackerRank_TASK
+# Leetcode and etc task
