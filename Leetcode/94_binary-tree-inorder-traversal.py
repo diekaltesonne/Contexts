@@ -1,8 +1,11 @@
-# [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
-# [How to implement Inorder traversal in a binary search tree?](https://dev.to/javinpaul/how-to-implement-inorder-traversal-in-a-binary-search-tree-1787#:~:text=The%20InOrder%20traversal%20is%20one,nodes%20on%20the%20right%20subtree.)
+# [Tree Traversals (Inorder, Preorder and Postorder)]
+# (https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
+# [Oбход дерева – центрированный (inorder), прямой (preorder) и обратный (postorder) (три основных способа обхода)](
+# https://evileg.com/ru/post/490/)
 # Definition for a binary tree node.
 
 from typing import List
+from collections import deque
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -12,10 +15,18 @@ class TreeNode:
 
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
+        ans = []
+        if not root:
+            return []
+        ans.extend(self.inorderTraversal(root.left))
+        ans.extend((root.val))
+        ans.extend.inorderTraversal(root.right)
+        return ans
+
         
-        pass
 
 def main():
+
     a = Solution()
     root = [1,None,2,3]
     a.inorderTraversal(root)
