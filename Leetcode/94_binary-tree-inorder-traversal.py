@@ -19,8 +19,8 @@ class Solution:
         if not root:
             return []
         ans.extend(self.inorderTraversal(root.left))
-        ans.extend((root.val))
-        ans.extend.inorderTraversal(root.right)
+        ans.append((root.val))
+        ans.extend(self.inorderTraversal(root.right))
         return ans
 
         
