@@ -1,0 +1,32 @@
+class Solution:
+    def _search(self,l, r, x):
+        if r >= l:
+            mid = l + (r - l) // 2
+            if self.nums[mid][-1] >= x and self.nums[mid][0] <=x:
+                return self._search_small(0,len(self.nums[mid]) - 1,x,mid)
+            elif self.nums[mid][-1] > x:
+                return self._search(l, mid - 1, x)
+            else:
+                return self._search(mid + 1 ,r, x)
+        else:
+            return False
+
+    def _search_small(self,l ,r, x, a):
+        if len(self.nums[a]) == 0 and x == 0:
+            return False
+        if r >= l:
+            mid = l + (r - l) //2
+            if self.nums[a][mid] == x:
+                return True
+            elif self.nums[a][mid] > x:
+                return self._search_small(l, mid-1, x, a)
+            else:
+                return self._search_small(mid + 1, r, x, a)
+        else:
+            return False
+
+
+
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        self.nums = matrix
+        return self._search(0, len(self.nums)-1, target)

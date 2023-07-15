@@ -5,14 +5,13 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
 class Solution:
     def isSameTree(self, p, q):
         """
         :type p: TreeNode
         :type q: TreeNode
         :rtype: bool
-        """    
+        """ 
         # p and q are both None
         if not p and not q:
             return True
